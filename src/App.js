@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import Privacy from './Privacy';
 
 // 숫자 포맷 (천단위 콤마)
 const fmt = (n) => Math.round(n).toLocaleString('ko-KR');
@@ -304,6 +305,8 @@ const TABS = [
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('salary');
+  const [page, setPage] = useState('home');
+if (page === 'privacy') return <Privacy />;
 
   return (
     <div className="app">
@@ -336,6 +339,11 @@ export default function App() {
 
       <footer>
         <p>© 2025 재테크 계산기 · 본 계산 결과는 참고용이며 실제와 다를 수 있습니다.</p>
+        <p style={{marginTop:8}}>
+          <button onClick={() => setPage('privacy')} style={{background:'none', border:'none', color:'#718096', cursor:'pointer', textDecoration:'underline', fontSize:'0.82rem'}}>
+            개인정보처리방침
+          </button>
+        </p>
       </footer>
     </div>
   );
