@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import './App.css';
 import Privacy from './Privacy';
- 
+
 // 숫자 포맷 (천단위 콤마)
 const fmt = (n) => Math.round(n).toLocaleString('ko-KR');
- 
+
 // ────────────────────────────────
 // 1. 연봉 실수령액 계산기
 // ────────────────────────────────
 function SalaryCalculator() {
   const [salary, setSalary] = useState('');
- 
+
   const calc = () => {
     const s = parseFloat(salary.replace(/,/g, '')) * 10000;
     if (!s || s <= 0) return null;
@@ -23,9 +23,9 @@ function SalaryCalculator() {
     const total = pension + health + longterm + employment + tax;
     return { monthly, pension, health, longterm, employment, tax, total, take: monthly - total };
   };
- 
+
   const result = calc();
- 
+
   return (
     <div className="calculator-card">
       <h2>💼 연봉 실수령액 계산기</h2>
@@ -60,7 +60,7 @@ function SalaryCalculator() {
     </div>
   );
 }
- 
+
 // ────────────────────────────────
 // 2. 퇴직금 계산기
 // ────────────────────────────────
@@ -68,7 +68,7 @@ function RetirementCalculator() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [avgWage, setAvgWage] = useState('');
- 
+
   const calc = () => {
     if (!startDate || !endDate || !avgWage) return null;
     const start = new Date(startDate);
@@ -79,9 +79,9 @@ function RetirementCalculator() {
     const retirement = (wage / 30) * 30 * (days / 365);
     return { days: Math.floor(days), years: (days / 365).toFixed(1), retirement };
   };
- 
+
   const result = calc();
- 
+
   return (
     <div className="calculator-card">
       <h2>📅 퇴직금 계산기</h2>
@@ -117,7 +117,7 @@ function RetirementCalculator() {
     </div>
   );
 }
- 
+
 // ────────────────────────────────
 // 3. 적금 만기금액 계산기
 // ────────────────────────────────
@@ -125,7 +125,7 @@ function SavingsCalculator() {
   const [monthly, setMonthly] = useState('');
   const [rate, setRate] = useState('');
   const [months, setMonths] = useState('');
- 
+
   const calc = () => {
     const m = parseFloat(monthly.replace(/,/g, '')) * 10000;
     const r = parseFloat(rate) / 100 / 12;
@@ -136,9 +136,9 @@ function SavingsCalculator() {
     const tax = interest * 0.154;
     return { total, interest, tax, final: total + interest - tax };
   };
- 
+
   const result = calc();
- 
+
   return (
     <div className="calculator-card">
       <h2>🏦 적금 만기금액 계산기</h2>
@@ -171,7 +171,7 @@ function SavingsCalculator() {
     </div>
   );
 }
- 
+
 // ────────────────────────────────
 // 4. 대출 이자 계산기
 // ────────────────────────────────
@@ -180,7 +180,7 @@ function LoanCalculator() {
   const [rate, setRate] = useState('');
   const [months, setMonths] = useState('');
   const [type, setType] = useState('equal');
- 
+
   const calc = () => {
     const p = parseFloat(principal.replace(/,/g, '')) * 10000;
     const r = parseFloat(rate) / 100 / 12;
@@ -197,9 +197,9 @@ function LoanCalculator() {
       return { monthly: firstMonth, total: p + totalInterest, interest: totalInterest, note: '첫 달 기준 금액' };
     }
   };
- 
+
   const result = calc();
- 
+
   return (
     <div className="calculator-card">
       <h2>🏠 대출 이자 계산기</h2>
@@ -239,14 +239,14 @@ function LoanCalculator() {
     </div>
   );
 }
- 
+
 // ────────────────────────────────
 // 5. 비상금 목표 계산기
 // ────────────────────────────────
 function EmergencyCalculator() {
   const [expense, setExpense] = useState('');
   const [saved, setSaved] = useState('');
- 
+
   const calc = () => {
     const e = parseFloat(expense.replace(/,/g, '')) * 10000;
     const s = parseFloat((saved || '0').replace(/,/g, '')) * 10000;
@@ -256,9 +256,9 @@ function EmergencyCalculator() {
     const progress3 = Math.min((s / target3) * 100, 100);
     return { target3, target6, progress3, remaining: Math.max(target3 - s, 0), s };
   };
- 
+
   const result = calc();
- 
+
   return (
     <div className="calculator-card">
       <h2>🛡️ 비상금 목표 계산기</h2>
@@ -291,7 +291,7 @@ function EmergencyCalculator() {
     </div>
   );
 }
- 
+
 // ────────────────────────────────
 // 메인 App
 // ────────────────────────────────
@@ -304,7 +304,7 @@ const TABS = [
   { id: 'deposit', label: '📈 주식 예탁금' },
   { id: 'court', label: '⚖️ 법원 공탁금' },
 ];
- 
+
 // ────────────────────────────────
 // 6. 주식 예탁금 이용료 계산기
 // ────────────────────────────────
@@ -312,7 +312,7 @@ function DepositCalculator() {
   const [amount, setAmount] = useState('');
   const [rate, setRate] = useState('2.1');
   const [days, setDays] = useState('365');
- 
+
   const calc = () => {
     const a = parseFloat(amount.replace(/,/g, '')) * 10000;
     const r = parseFloat(rate) / 100;
@@ -323,9 +323,9 @@ function DepositCalculator() {
     const final = interest - tax;
     return { interest, tax, final };
   };
- 
+
   const result = calc();
- 
+
   return (
     <div className="calculator-card">
       <h2>📈 주식 예탁금 이용료 계산기</h2>
@@ -378,7 +378,7 @@ function DepositCalculator() {
     </div>
   );
 }
- 
+
 // ────────────────────────────────
 // 7. 법원 공탁금 이자 계산기
 // ────────────────────────────────
@@ -387,13 +387,13 @@ function CourtCalculator() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [type, setType] = useState('deposit');
- 
+
   const RATES = {
     deposit: { rate: 2.5, label: '전세보증금 공탁 (연 2.5%)' },
     execution: { rate: 5.0, label: '집행공탁 (연 5.0%)' },
     guarantee: { rate: 1.0, label: '보증공탁 (연 1.0%)' },
   };
- 
+
   const calc = () => {
     const a = parseFloat(amount.replace(/,/g, '')) * 10000;
     if (!a || !startDate || !endDate) return null;
@@ -406,9 +406,9 @@ function CourtCalculator() {
     const tax = interest * 0.154;
     return { days: Math.floor(days), interest, tax, final: interest - tax, total: a + interest - tax };
   };
- 
+
   const result = calc();
- 
+
   return (
     <div className="calculator-card">
       <h2>⚖️ 법원 공탁금 이자 계산기</h2>
@@ -461,19 +461,19 @@ function CourtCalculator() {
     </div>
   );
 }
- 
+
 export default function App() {
   const [activeTab, setActiveTab] = useState('salary');
   const [page, setPage] = useState('home');
   if (page === 'privacy') return <Privacy />;
- 
+
   return (
     <div className="app">
       <header>
         <h1>💰 재테크 계산기</h1>
         <p>직장인을 위한 필수 금융 계산기 모음</p>
       </header>
- 
+
       <div className="tabs">
         {TABS.map(tab => (
           <button
@@ -485,7 +485,7 @@ export default function App() {
           </button>
         ))}
       </div>
- 
+
       {activeTab === 'salary' && <SalaryCalculator />}
       {activeTab === 'retirement' && <RetirementCalculator />}
       {activeTab === 'savings' && <SavingsCalculator />}
@@ -493,11 +493,11 @@ export default function App() {
       {activeTab === 'emergency' && <EmergencyCalculator />}
       {activeTab === 'deposit' && <DepositCalculator />}
       {activeTab === 'court' && <CourtCalculator />}
- 
+
       <div className="ad-placeholder">
         📢 광고 영역 (Google AdSense 연동 시 여기에 광고가 표시됩니다)
       </div>
- 
+
       {/* ── 핀인포 상호 링크 배너 ── */}
       <div style={{
         textAlign: 'center',
@@ -531,7 +531,7 @@ export default function App() {
           📰 핀인포 - 금융 정보 보러가기 →
         </a>
       </div>
- 
+
       <footer>
         <p>© 2025 재테크 계산기 · 본 계산 결과는 참고용이며 실제와 다를 수 있습니다.</p>
         <p style={{marginTop:8}}>
@@ -546,4 +546,3 @@ export default function App() {
     </div>
   );
 }
- 
