@@ -329,33 +329,18 @@ function DepositCalculator() {
   return (
     <div className="calculator-card">
       <h2>📈 주식 예탁금 이용료 계산기</h2>
-      <p className="desc">증권사에 맡긴 예탁금에 대한 이용료(이자)를 계산해드려요. 증권사마다 금리가 다르니 확인 후 입력하세요.</p>
+      <p className="desc">증권사에 맡긴 예탁금에 대한 이용료(이자)를 계산해드려요.</p>
       <div className="input-group">
         <label>예탁금 (만원)</label>
-        <input
-          type="text"
-          placeholder="예: 1000"
-          value={amount}
-          onChange={e => setAmount(e.target.value.replace(/[^0-9]/g, ''))}
-        />
+        <input type="text" placeholder="예: 1000" value={amount} onChange={e => setAmount(e.target.value.replace(/[^0-9]/g, ''))} />
       </div>
       <div className="input-group">
         <label>연 이용료율 (%)</label>
-        <input
-          type="text"
-          placeholder="예: 2.1"
-          value={rate}
-          onChange={e => setRate(e.target.value)}
-        />
+        <input type="text" placeholder="예: 2.1" value={rate} onChange={e => setRate(e.target.value)} />
       </div>
       <div className="input-group">
         <label>예탁 기간 (일)</label>
-        <input
-          type="text"
-          placeholder="예: 30 (직접 입력)"
-          value={days}
-          onChange={e => setDays(e.target.value.replace(/[^0-9]/g, ''))}
-        />
+        <input type="text" placeholder="예: 30" value={days} onChange={e => setDays(e.target.value.replace(/[^0-9]/g, ''))} />
       </div>
       {result && (
         <>
@@ -370,7 +355,7 @@ function DepositCalculator() {
           </div>
           <div className="result-detail" style={{marginTop:12, background:'#fffbeb', border:'1px solid #f6e05e'}}>
             <p style={{fontSize:'0.82rem', color:'#744210'}}>
-              💡 주요 증권사 예탁금 이용료율: 키움 2.0%, 미래에셋 2.1%, 삼성증권 2.0%, NH투자 1.8% (변동될 수 있으니 각 증권사 확인 필요)
+              💡 주요 증권사 예탁금 이용료율: 키움 2.0%, 미래에셋 2.1%, 삼성증권 2.0%, NH투자 1.8%
             </p>
           </div>
         </>
@@ -415,12 +400,7 @@ function CourtCalculator() {
       <p className="desc">전세보증금, 집행공탁 등 법원에 맡긴 공탁금의 이자를 계산해드려요.</p>
       <div className="input-group">
         <label>공탁금 (만원)</label>
-        <input
-          type="text"
-          placeholder="예: 10000"
-          value={amount}
-          onChange={e => setAmount(e.target.value.replace(/[^0-9]/g, ''))}
-        />
+        <input type="text" placeholder="예: 10000" value={amount} onChange={e => setAmount(e.target.value.replace(/[^0-9]/g, ''))} />
       </div>
       <div className="input-group">
         <label>공탁 종류</label>
@@ -453,7 +433,7 @@ function CourtCalculator() {
           </div>
           <div className="result-detail" style={{marginTop:12, background:'#fff5f5', border:'1px solid #feb2b2'}}>
             <p style={{fontSize:'0.82rem', color:'#742a2a'}}>
-              ⚠️ 본 계산 결과는 참고용이며 실제 법원 공탁금 이자와 다를 수 있습니다. 정확한 금액은 법원에 문의하세요.
+              ⚠️ 본 계산 결과는 참고용이며 실제 법원 공탁금 이자와 다를 수 있습니다.
             </p>
           </div>
         </>
@@ -498,47 +478,31 @@ export default function App() {
         📢 광고 영역 (Google AdSense 연동 시 여기에 광고가 표시됩니다)
       </div>
 
-      {/* ── 핀인포 상호 링크 배너 ── */}
-      <div style={{
-        textAlign: 'center',
-        padding: '24px 16px',
-        margin: '16px 0',
-        background: '#ebf4ff',
-        borderRadius: '12px',
-        border: '1px solid #bee3f8'
-      }}>
-        <p style={{ fontSize: '14px', color: '#2c5282', marginBottom: '10px', fontWeight: '600' }}>
-          📰 계산 결과, 어떻게 활용할지 모르겠다면?
+      {/* ── 자매 사이트 링크 배너 ── */}
+      <div style={{textAlign:'center', padding:'24px 16px', margin:'16px 0', background:'#f0f9ff', borderRadius:'12px', border:'1px solid #bae6fd'}}>
+        <p style={{fontSize:'14px', color:'#0c4a6e', fontWeight:'600', marginBottom:'14px'}}>
+          🔗 함께 사용하면 더 좋은 사이트
         </p>
-        <p style={{ fontSize: '13px', color: '#4a5568', marginBottom: '14px' }}>
-          청년도약계좌, 퇴직금 활용법, 연말정산 절약 팁을 확인해보세요!
-        </p>
-        <a
-          href="https://fininfo.pages.dev"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: 'inline-block',
-            background: '#2563eb',
-            color: 'white',
-            padding: '10px 24px',
-            borderRadius: '8px',
-            textDecoration: 'none',
-            fontWeight: 'bold',
-            fontSize: '15px'
-          }}
-        >
-          📰 핀인포 - 금융 정보 보러가기 →
-        </a>
+        <div style={{display:'flex', gap:'10px', justifyContent:'center', flexWrap:'wrap'}}>
+          <a href="https://fininfo.pages.dev" target="_blank" rel="noopener noreferrer"
+            style={{background:'#059669', color:'white', padding:'9px 18px', borderRadius:'8px', textDecoration:'none', fontWeight:'bold', fontSize:'14px'}}>
+            📰 핀인포
+          </a>
+          <a href="https://jjantek-calculator.pages.dev" target="_blank" rel="noopener noreferrer"
+            style={{background:'#d97706', color:'white', padding:'9px 18px', borderRadius:'8px', textDecoration:'none', fontWeight:'bold', fontSize:'14px'}}>
+            🪙 짠테크 계산기
+          </a>
+          <a href="https://budongsan-info.pages.dev" target="_blank" rel="noopener noreferrer"
+            style={{background:'#7c3aed', color:'white', padding:'9px 18px', borderRadius:'8px', textDecoration:'none', fontWeight:'bold', fontSize:'14px'}}>
+            🏠 부동산 인포
+          </a>
+        </div>
       </div>
 
       <footer>
         <p>© 2025 재테크 계산기 · 본 계산 결과는 참고용이며 실제와 다를 수 있습니다.</p>
         <p style={{marginTop:8}}>
-          <button
-            onClick={() => setPage('privacy')}
-            style={{background:'none', border:'none', color:'#718096', cursor:'pointer', textDecoration:'underline', fontSize:'0.82rem'}}
-          >
+          <button onClick={() => setPage('privacy')} style={{background:'none', border:'none', color:'#718096', cursor:'pointer', textDecoration:'underline', fontSize:'0.82rem'}}>
             개인정보처리방침
           </button>
         </p>
